@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mini_project/Screen/Login_Screen.dart';
+// import 'package:mini_project/Screen/Splash_Screen.dart';
 
 void main() {
   runApp(const MyApp());
