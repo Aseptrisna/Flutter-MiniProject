@@ -1,45 +1,60 @@
-// import 'package:flutter/material.dart';
-// import 'package:mini_project/Screen/Login_Screen.dart';
-// import 'package:splashscreen/splashscreen.dart';
+import 'dart:async';
 
-// class StartUp extends StatefulWidget {
-//   StartUp({Key? key}) : super(key: key);
-//   @override
-//   _StartUpState createState() => _StartUpState();
-// }
+import 'package:flutter/material.dart';
+import 'package:mini_project/Screen/Dashboard._Screen.dart';
+import 'package:mini_project/Screen/Login_Screen.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
-// class _StartUpState extends State<StartUp> {
-//   @override
-//   Widget build(BuildContext context) {
-//     return new SplashScreen(
-//       seconds: 14,
-//       navigateAfterSeconds: new AfterSplash(),
-//       title: new Text(
-//         'Welcome In SplashScreen',
-//         style: new TextStyle(fontWeight: FontWeight.bold, fontSize: 20.0),
-//       ),
-//       image: new Image.network(
-//           'https://flutter.io/images/catalog-widget-placeholder.png'),
-//       backgroundColor: Colors.white,
-//       loaderColor: Colors.red,
-//     );
-//   }
-// }
+class StartUp extends StatefulWidget {
+  // const StartUp({ Key? key }) : super(key: key);
 
-// class AfterSplash extends StatelessWidget {
-//   @override
-//   Widget build(BuildContext context) {
-//     return new Scaffold(
-//       appBar: new AppBar(
-//         title: new Text("Welcome In SplashScreen Package"),
-//         automaticallyImplyLeading: false,
-//       ),
-//       body: new Center(
-//         child: new Text(
-//           "Succeeded!",
-//           style: new TextStyle(fontWeight: FontWeight.bold, fontSize: 30.0),
-//         ),
-//       ),
-//     );
-//   }
-// }
+  @override
+  _StartUpState createState() => _StartUpState();
+}
+
+class _StartUpState extends State<StartUp> {
+  void Pref() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    if (prefs.getBool("isLogin") == true) {
+      Navigator.pushReplacement(
+          context,
+          new MaterialPageRoute(
+              builder: (BuildContext context) => new PageDashboard()));
+    } else {
+      Navigator.pushReplacement(
+          context,
+          new MaterialPageRoute(
+              builder: (BuildContext context) => new LoginPage()));
+    }
+  }
+
+  startTime() async {
+    var _duration = new Duration(seconds: 2);
+    return new Timer(_duration, Pref);
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    startTime();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: Colors.white,
+      body: new Center(
+        child: Container(
+          child: new Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              new Image.asset('asset/images/logo.png'),
+              new Padding(padding: new EdgeInsets.only(top: 25.0)),
+              new CircularProgressIndicator()
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}

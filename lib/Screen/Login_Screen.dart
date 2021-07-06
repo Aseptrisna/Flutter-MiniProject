@@ -8,7 +8,7 @@ import 'dart:convert' as convert;
 import 'package:http/http.dart' as http;
 import 'package:mini_project/Server/Server.dart';
 import 'package:mini_project/Common/color.dart';
-import 'package:mini_project/Common/dialog.dart';
+// import 'package:mini_project/Common/dialog.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class LoginPage extends StatefulWidget {
@@ -53,12 +53,11 @@ class _LoginState extends State<LoginPage> {
         print(Message);
         SharedPreferences prefs = await SharedPreferences.getInstance();
         await prefs.setBool('isLogin', true);
-        await prefs.setString('id', result['_id']);
+        await prefs.setInt('_id', result['_id']);
         await prefs.setString('nama', result['nama']);
         await prefs.setString('email', result['email']);
         await prefs.setString('telp', result['telp']);
         await prefs.setString('password', result['password']);
-
         var _duration = new Duration(seconds: 1);
         new Timer(_duration, () {
           Navigator.pushReplacement(
