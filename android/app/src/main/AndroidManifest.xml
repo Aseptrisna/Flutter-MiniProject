@@ -3,7 +3,12 @@
    <application
         android:label="mini_project"
         android:icon="@mipmap/ic_launcher">
-        <activity
+
+          <!-- <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+          <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+          <uses-permission android:name="android.permission.CAMERA" /> -->
+        
+          <activity
             android:name=".MainActivity"
             android:launchMode="singleTop"
             android:theme="@style/LaunchTheme"

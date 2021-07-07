@@ -45,19 +45,26 @@ class _LoginState extends State<LoginPage> {
         "password": controllerpassword.text
       });
       var result = convert.jsonDecode(response.body);
+      // var user = convert.jsonDecode(result['user']);
       // var simpan = Simpan(result);
       String Message = result['message'];
+      String Guid = result['guid_id'];
       if (result['status']) {
         Navigator.of(context, rootNavigator: true).pop();
         showSnakbar(context, Message, SuccesColor);
         print(Message);
+        print(result['user']);
+        print(result['user']['role']);
+        // print(result);
+        //print(result(['guid_id']));
         SharedPreferences prefs = await SharedPreferences.getInstance();
         await prefs.setBool('isLogin', true);
-        await prefs.setInt('_id', result['_id']);
-        await prefs.setString('nama', result['nama']);
-        await prefs.setString('email', result['email']);
-        await prefs.setString('telp', result['telp']);
-        await prefs.setString('password', result['password']);
+        await prefs.setString('_id', result['user']['_id']);
+        await prefs.setString('guid_id', result['user']['guid_id']);
+        await prefs.setString('nama', result['user']['nama']);
+        await prefs.setString('email', result['user']['email']);
+        await prefs.setInt('telp', result['user']['telp']);
+        await prefs.setString('password', result['user']['password']);
         var _duration = new Duration(seconds: 1);
         new Timer(_duration, () {
           Navigator.pushReplacement(

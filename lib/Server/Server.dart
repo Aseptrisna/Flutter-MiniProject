@@ -1,3 +1,3 @@
 import 'package:flutter/material.dart';
 
-var UrlServer = "http://192.168.4.183:1442/";
+var UrlServer = "http://192.168.137.1:1442/";

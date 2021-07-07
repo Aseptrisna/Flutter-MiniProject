@@ -13,9 +13,11 @@ import 'package:mini_project/Screen/Login_Screen.dart';
 import 'dart:convert' as convert;
 import 'package:http/http.dart' as http;
 import 'package:mini_project/Server/Server.dart';
+import 'package:mini_project/Service/guid_service.dart';
+import 'package:uuid/uuid.dart';
 
 class SignupPage extends StatelessWidget {
-  const SignupPage({Key? key}) : super(key: key);
+  const SignupPage({Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -34,6 +36,7 @@ class MySignup extends StatefulWidget {
 }
 
 class _MySignupState extends State<MySignup> {
+  final GuidService guidService = new GuidService();
   TextEditingController controlleremail = new TextEditingController();
   TextEditingController controllernama = new TextEditingController();
   TextEditingController controllertelp = new TextEditingController();
@@ -44,7 +47,9 @@ class _MySignupState extends State<MySignup> {
     ScaffoldMessenger.of(context).showSnackBar(snackBar);
   }
 
+  // var uuid = Uuid();
   Future<void> Signup() async {
+    // print(GuidService().generateGuid());
     var url = UrlServer + "user/signup";
     String email = controlleremail.text;
     String nama = controllernama.text;
@@ -64,6 +69,7 @@ class _MySignupState extends State<MySignup> {
       showSnakbar(context, 'Kolom Password Tidak Kosong !', ErrorColor);
     } else {
       final response = await http.post(Uri.parse(url), body: {
+        "guid_id": GuidService().generateGuid(),
         "email": controlleremail.text,
         "nama": controllernama.text,
         "telp": controllertelp.text,
