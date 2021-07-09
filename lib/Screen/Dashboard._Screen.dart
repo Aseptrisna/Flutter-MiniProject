@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mini_project/Screen/Camera.dart';
 import 'package:mini_project/Screen/Camera_Screen.dart';
+import 'package:mini_project/Screen/HasilReport_Screen.dart';
 import 'package:mini_project/Screen/Login_Screen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 // import 'package:mini_project/Screen/Camera_Screen.dart';
@@ -65,12 +66,12 @@ class PageDashboard extends StatelessWidget {
                     minWidth: 150.0,
                     color: Theme.of(context).primaryColor,
                     textColor: Colors.white,
-                    child: new Text("Profile"),
+                    child: new Text("Hasil Report"),
                     onPressed: () => {
-                      // Navigator.push(
-                      //   context,
-                      //   MaterialPageRoute(builder: (context) => Profile()),
-                      // )
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => HasilReport()),
+                      )
                     },
                     splashColor: Colors.redAccent,
                   )),

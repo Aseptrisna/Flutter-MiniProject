@@ -54,6 +54,7 @@ class _LoginState extends State<LoginPage> {
         showSnakbar(context, Message, SuccesColor);
         print(Message);
         print(result['user']);
+        print(result['user']['guid_id']);
         print(result['user']['role']);
         // print(result);
         //print(result(['guid_id']));

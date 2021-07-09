@@ -43,7 +43,7 @@ class getLocation {
     String kodepos = '${placeMark.postalCode}';
     String Address =
         '${jalan},${kelurhan},${kecamatan},${kota},${prov} ${kodepos}';
-    print(Address);
+    // print(Address);
     // userLocation.latitude = latitude;
     // userLocation.longitude = longitude;
     // userLocation.address = Address;
@@ -57,6 +57,8 @@ class getLocation {
     //     latitude: latitude, longitude: longitude, address: Address);
     prefs.setString('userlatitude', latitude.toString());
     prefs.setString('userlongitude', longitude.toString());
+    prefs.setString('prov', prov.toString());
+    prefs.setString('kota', kota.toString());
     prefs.setString('useraddress', Address);
     // print(userLocation);
   }
