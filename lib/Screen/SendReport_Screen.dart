@@ -50,13 +50,29 @@ class _PreviewScreenState extends State<PreviewScreen> {
     longitude.text = prefs.getString('userlongitude');
   }
 
+  Future<void> ChexConecction(File file) async {
+    try {
+      final result = await InternetAddress.lookup('google.com');
+      if (result.isNotEmpty && result[0].rawAddress.isNotEmpty) {
+        print('connected');
+        // showSnakbar(context, "Ada Koneksi Internet", SuccesColor);
+        // Navigator.of(context, rootNavigator: true).pop();
+        Simpan(file);
+      }
+    } on SocketException catch (_) {
+      showSnakbar(context, "Tidak ada Koneksi Internet", ErrorColor);
+      Navigator.of(context, rootNavigator: true).pop();
+      print('not connected');
+    }
+  }
+
   Future<void> Simpan(File file) async {
     String deskripsi = deskrispi.text;
     final FtpService ftpService = new FtpService();
     bool isSuccess = await ftpService.uploadFile(file, deskripsi);
     if (isSuccess) {
       print(isSuccess);
-      showSnakbar(context, "Berhasil", SuccesColor);
+      showSnakbar(context, "Berhasil Membuat Report", SuccesColor);
       Navigator.of(context, rootNavigator: true).pop();
       var _duration = new Duration(seconds: 1);
       new Timer(_duration, () {
@@ -66,7 +82,7 @@ class _PreviewScreenState extends State<PreviewScreen> {
                 builder: (BuildContext context) => new PageDashboard()));
       });
     } else {
-      showSnakbar(context, "Gagal", ErrorColor);
+      showSnakbar(context, "Gagal Membuat Report", ErrorColor);
       Navigator.of(context, rootNavigator: true).pop();
       print(isSuccess);
     }
@@ -276,7 +292,7 @@ class _PreviewScreenState extends State<PreviewScreen> {
   Future<void> Submit(BuildContext context, File file) async {
     try {
       Dialogs.showLoadingDialog(context, _keyLoader);
-      Simpan(file);
+      ChexConecction(file);
     } catch (error) {
       print(error);
     }

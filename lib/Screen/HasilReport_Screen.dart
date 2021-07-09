@@ -1,6 +1,9 @@
+import 'dart:io';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:mini_project/Common/color.dart';
 import 'dart:convert';
 
 import 'package:mini_project/Server/Server.dart';
@@ -8,12 +11,27 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 class HasilReport extends StatelessWidget {
   final String apiUrl = UrlServer + "report/get";
+  void showSnakbar(BuildContext context, Message, color) {
+    final snackBar = SnackBar(content: Text(Message), backgroundColor: color);
+    ScaffoldMessenger.of(context).showSnackBar(snackBar);
+  }
+
   Future<List<dynamic>> _fecthDataUsers() async {
-    SharedPreferences pref = await SharedPreferences.getInstance();
-    String GUID = pref.getString('guid_id');
-    final result = await http.post(Uri.parse(apiUrl), body: {"GUID": GUID});
-    print(result.body);
-    return json.decode(result.body)['report'];
+    try {
+      final result = await InternetAddress.lookup('google.com');
+      if (result.isNotEmpty && result[0].rawAddress.isNotEmpty) {
+        print('connected');
+        SharedPreferences pref = await SharedPreferences.getInstance();
+        String GUID = pref.getString('guid_id');
+        final result = await http.post(Uri.parse(apiUrl), body: {"GUID": GUID});
+        print(result.body);
+        return json.decode(result.body)['report'];
+      }
+    } on SocketException catch (_) {
+      //  showSnakbar(context, "Tidak ada Koneksi Internet", ErrorColor);
+      // Navigator.of(context, rootNavigator: true).pop();
+      print('not connected');
+    }
   }
 
   @override
@@ -58,7 +76,7 @@ class HasilReport extends StatelessWidget {
                             Expanded(
                               child: Padding(
                                 padding: const EdgeInsets.fromLTRB(
-                                    5.0, 0.0, 2.0, 0.0),
+                                    10.0, 0.0, 2.0, 0.0),
                                 child: ListTile(
                                   title: Text(
                                     snapshot.data[index]['NAME'],

@@ -3,6 +3,7 @@ import 'package:mini_project/Screen/Camera.dart';
 import 'package:mini_project/Screen/Camera_Screen.dart';
 import 'package:mini_project/Screen/HasilReport_Screen.dart';
 import 'package:mini_project/Screen/Login_Screen.dart';
+import 'package:mini_project/Screen/Profile_Screen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 // import 'package:mini_project/Screen/Camera_Screen.dart';
 // import 'package:camera/camera.dart';
@@ -32,27 +33,27 @@ class PageDashboard extends StatelessWidget {
       body: Center(
           child: Column(
         children: <Widget>[
-          // Row(
-          //   mainAxisAlignment: MainAxisAlignment.start,
-          //   children: <Widget>[
-          //     Padding(
-          //       padding: EdgeInsets.all(25.0),
-          //       child: Container(
-          //         width: 100,
-          //         height: 100,
-          //         child: Image.asset("asset/images/user.png"),
-          //       ),
-          //     ),
-          //     Padding(
-          //       padding: EdgeInsets.all(20.0),
-          //       child: Container(
-          //         width: 100,
-          //         height: 100,
-          //         child: Image.asset("asset/images/user.png"),
-          //       ),
-          //     )
-          //   ],
-          // ),
+          Row(
+              //   mainAxisAlignment: MainAxisAlignment.start,
+              //   children: <Widget>[
+              //     Padding(
+              //       padding: EdgeInsets.all(25.0),
+              //       child: Container(
+              //         width: 100,
+              //         height: 100,
+              //         child: Image.asset("asset/images/user.png"),
+              //       ),
+              //     ),
+              //     Padding(
+              //       padding: EdgeInsets.all(20.0),
+              //       child: Container(
+              //         width: 100,
+              //         height: 100,
+              //         child: Image.asset("asset/images/user.png"),
+              //       ),
+              //     )
+              //   ],
+              ),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
@@ -62,6 +63,9 @@ class PageDashboard extends StatelessWidget {
               Padding(
                   padding: EdgeInsets.all(10.0),
                   child: new MaterialButton(
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(22.0)),
+                    elevation: 18.0,
                     height: 100.0,
                     minWidth: 150.0,
                     color: Theme.of(context).primaryColor,
@@ -78,6 +82,9 @@ class PageDashboard extends StatelessWidget {
               Padding(
                   padding: EdgeInsets.all(10.0),
                   child: new MaterialButton(
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(22.0)),
+                    elevation: 18.0,
                     height: 100.0,
                     minWidth: 150.0,
                     color: Theme.of(context).primaryColor,
@@ -102,22 +109,28 @@ class PageDashboard extends StatelessWidget {
               Padding(
                   padding: EdgeInsets.all(10.0),
                   child: new MaterialButton(
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(22.0)),
+                    elevation: 18.0,
                     height: 100.0,
                     minWidth: 150.0,
                     color: Theme.of(context).primaryColor,
                     textColor: Colors.white,
-                    child: new Text("Settings"),
+                    child: new Text("Profile"),
                     onPressed: () => {
-                      // Navigator.push(
-                      //   context,
-                      //   MaterialPageRoute(builder: (context) => Settings()),
-                      // )
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => MyProfile()),
+                      )
                     },
                     splashColor: Colors.redAccent,
                   )),
               Padding(
                   padding: EdgeInsets.all(10.0),
                   child: new MaterialButton(
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(22.0)),
+                    elevation: 18.0,
                     height: 100.0,
                     minWidth: 150.0,
                     color: Theme.of(context).primaryColor,
