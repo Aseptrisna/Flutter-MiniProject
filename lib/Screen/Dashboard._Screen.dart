@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mini_project/Screen/Camera.dart';
 import 'package:mini_project/Screen/Camera_Screen.dart';
 import 'package:mini_project/Screen/Login_Screen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -82,12 +83,13 @@ class PageDashboard extends StatelessWidget {
                     textColor: Colors.white,
                     child: new Text("Report"),
                     onPressed: () => {
-                      mainCamera()
-                      // Navigator.push(
-                      //   context,
-                      //   MaterialPageRoute(
-                      //       builder: (context) => new TakePictureScreen(camera: camera)),
-                      // )
+                      // CameraScreen()
+                      // mainCamera()
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => new CameraScreen()),
+                      )
                     },
                     splashColor: Colors.redAccent,
                   )),

@@ -4,7 +4,7 @@ class RMQService {
   final String userQueue = "iotperikanan";
   final String passQueue = "KanS3g4R112";
   final String vHostQueue = "/iotperikanan";
-  final String hostQueue = "";
+  final String hostQueue = "rmq2.pptik.id";
   final String queues = "latihan";
 
   Client connect() {

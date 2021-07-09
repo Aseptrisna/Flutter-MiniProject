@@ -5,8 +5,8 @@ import 'package:ftpclient/ftpclient.dart';
 
 class FtpService {
   Future<bool> uploadFile(File file, String guid, String ts) async {
-    FTPClient client =
-        FTPClient('', user: 'pasar', pass: 'b4lanj!d!pas4R', port: 2121);
+    FTPClient client = FTPClient('pasar.pptik.id',
+        user: 'pasar', pass: 'b4lanj!d!pas4R', port: 2121);
     try {
       client.connect();
       client.changeDirectory('/kehadiran/image/');
